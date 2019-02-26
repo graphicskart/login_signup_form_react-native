@@ -1,37 +1,36 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- * @lint-ignore-every XPLATJSCOPYRIGHT1
- */
-
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, ImageBackground, TextInput, Image, TouchableOpacity} from 'react-native';
-
-export default class Register extends Component {
-    static navigationOptions = {
-        header: null
-        }
+export default class Login extends Component {
+static navigationOptions = {
+    header: null
+}
+onPress = () => {
+    this.props.navigation.navigate('Register')
+}
   render() {
     return (
-      <ImageBackground source={require('../img/image.jpeg')} style={{width: '100%', height: '100%'}} blurRadius={10}>
-        <View style={[styles.container,{padding: 15}]}>
-          <View style={[styles.container,{justifyContent: 'center'}]}>
-            <Text style={styles.mainText}>CREATE ACCOUNT</Text>
-          </View>
-          <View style={styles.innerContainer}>
-            <TextInput style={styles.textInput} placeholderTextColor="#fff" placeholder="Username"/>
-            <TextInput style={styles.textInput} placeholderTextColor="#fff" placeholder="Email"/>
-            <TextInput style={styles.textInput} placeholderTextColor="#fff" placeholder="Password" secureTextEntry={true}/>
-            <TouchableOpacity style={[styles.textInput,{marginTop: 30,backgroundColor: '#4c8da5',justifyContent: 'center',alignItems: 'center',borderWidth: 0}]}>
-              <Text style={{color: '#fff',fontSize: 16, fontWeight: '600'}}>Create Account</Text>
-            </TouchableOpacity>
-            <Text style={styles.termsText}>Terms & Conditions</Text>
-          </View>
+        <View style={[styles.container]}>
+            <View style={[styles.container,{justifyContent: 'center',alignItems: 'center',backgroundColor: '#64a3e3',flex: 4}]}>
+                <View style={styles.logoImg}>
+                    <Image source={require('../img/logo.png')} style={{width: '100%',height: '100%'}}/>
+                </View>
+                <Text style={styles.mainText}>Register</Text>
+            </View>
+            <View style={styles.innerContainer}>
+                <View style={{marginTop: -60,backgroundColor: '#fff',borderRadius: 8,shadowColor: "#000000",shadowOpacity: 2,shadowRadius: 3,shadowOffset: {height: 0,width: 0},elevation: 5}}>
+                    <View style={{marginTop: 20,marginBottom: 30}}>
+                        <TextInput style={styles.textInput} placeholderTextColor="#000" placeholder="Username"/>
+                        <TextInput style={styles.textInput} placeholderTextColor="#000" placeholder="Email"/>
+                        <TextInput style={styles.textInput} placeholderTextColor="#000" placeholder="Password" secureTextEntry={true}/>
+                        <TouchableOpacity onPress={this.onPress.bind(this)}><Text style={styles.termsText}>Don't have account? Click here </Text></TouchableOpacity>
+                    </View>
+                    <TouchableOpacity style={{height: 40,backgroundColor: '#64a3e3',alignItems: 'center',justifyContent: 'center',position: 'absolute',bottom: -20,width: '90%',left: '5%',borderRadius: 20}}>
+                        <Text style={{color: '#fff',fontSize: 16,fontWeight: '600'}}>Sign In</Text>
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')} style={{alignItems: 'center',marginTop: 35}}><Text style={{color: '#7d7e80'}}>Already have account ? Sign In</Text></TouchableOpacity>
+            </View>
         </View>
-      </ImageBackground>
     );
   }
 }
@@ -41,27 +40,34 @@ const styles = StyleSheet.create({
     flex: 1
   },
   innerContainer: {
-    flex: 2
+    flex: 3,
+    padding: 10,
   },
   mainText: {
     fontSize: 24,
     color: '#fff',
-    textAlign: 'center'
+    textAlign: 'center',
+    marginBottom: 30
   },
   textInput: {
     height: 50, 
-    borderColor: 'gray', 
-    borderWidth: 1,
+    borderBottomWidth: 1,
     backgroundColor: 'transparent',
     borderRadius: 3,
-    marginBottom: 20,
     paddingLeft: 20,
     paddingRight: 20,
-    color: '#fff',
-    borderColor: '#fff'
+    borderColor: '#dcdee1',
+    color: '#000',
+    marginLeft: 20,
+    marginRight: 20
   },
   termsText: {
     textAlign: 'center',
     color: '#fff'
+  },
+  logoImg: {
+      height: 130,
+      width: 130,
+      justifyContent: 'center'
   }
 });
